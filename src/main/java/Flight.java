@@ -40,8 +40,25 @@ public class Flight {
         return this.departureTime;
     }
 
-
     public PlaneType getFlightPlane() {
         return this.plane.getTypeOfPlane();
+    }
+
+    public boolean flightHasSeatsAvailable() {
+
+//        if(this.passengerCount() < this.plane.getCapacityOfPlane()) {
+//            return true;
+//        } else  {
+//            return false;
+//        }
+        return this.passengerCount() < this.plane.getCapacityOfPlane();
+    }
+
+    public int getNumberOfSeatsAvailable() {
+        return this.plane.getCapacityOfPlane() - this.passengerCount();
+    }
+
+    public void addPassenger(Passenger passenger) {
+        this.passengers.add(passenger);
     }
 }
