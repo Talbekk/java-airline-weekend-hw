@@ -15,4 +15,6 @@ public class Passenger {
     public int getBagCount() {
         return this.numberOfBags;
     }
+
+
 }

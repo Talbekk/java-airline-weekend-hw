@@ -1,5 +1,6 @@
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.BitSet;
 
 public class Flight {
 
@@ -56,5 +57,19 @@ public class Flight {
         if (this.flightHasSeatsAvailable()) {
             this.passengers.add(passenger);
         }
+    }
+
+    public Passenger getPassenger(Passenger passenger1) {
+        for (Passenger currentPassenger : this.passengers) {
+            if (currentPassenger == passenger1) {
+                return currentPassenger;
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<Passenger> getPassengers() {
+        ArrayList<Passenger> listOfPassengers = new ArrayList<Passenger>(this.passengers);
+        return listOfPassengers;
     }
 }
