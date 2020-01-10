@@ -6,7 +6,18 @@ public class FlightManager {
         this.flight = flight;
     }
 
-    public Object getFlight() {
+    public Flight getFlight() {
         return this.flight;
+    }
+
+    public int getTotalBaggageAllowance() {
+        PlaneType plane = this.flight.getFlightPlane();
+        return plane.getWeight() / 2;
+    }
+
+    public int getPassengerBaggageAllowance() {
+        int totalAllowance = this.getTotalBaggageAllowance();
+        PlaneType plane = this.flight.getFlightPlane();
+        return totalAllowance / plane.getCapacity();
     }
 }

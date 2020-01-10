@@ -1,7 +1,7 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class FlightManagerTest {
 
@@ -18,6 +18,16 @@ public class FlightManagerTest {
 
     @Test
     public void checkTheFlightManagerHasAFlight(){
-        assertTrue(flightManager.getFlight() == Flight.class);
+        assertTrue(flightManager.getFlight() == flight);
+    }
+
+    @Test
+    public void checkThatFlightManagerCanGetTotalBaggageAllowanceForAFlight(){
+        assertEquals(3000, flightManager.getTotalBaggageAllowance());
+    }
+
+    @Test
+    public void checkTheFlightManagerCanGetBaggageAllowanceForOnePassenger(){
+        assertEquals(15, flightManager.getPassengerBaggageAllowance());
     }
 }
