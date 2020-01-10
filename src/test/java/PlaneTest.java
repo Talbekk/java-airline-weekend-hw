@@ -13,7 +13,7 @@ public class PlaneTest {
     }
 
     @Test
-    public void checkPlaneHasAType(){
+    public void canGetThePlanesType(){
         assertEquals(PlaneType.BOEING747, plane.getTypeOfPlane());
     }
 
