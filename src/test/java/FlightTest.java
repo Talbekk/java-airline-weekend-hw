@@ -9,12 +9,14 @@ public class FlightTest {
     private Plane plane;
     private Plane testPlane;
     private Passenger passenger1;
+    private Passenger passenger2;
 
     @Before
     public void before(){
         plane = new Plane(PlaneType.BOEING747);
         flight = new Flight("FR756", "EDI", "GLA", "1030", plane);
         passenger1 = new Passenger("Jon Snow", 1);
+        passenger2 = new Passenger("Ned Stark", 1);
     }
 
     @Test
@@ -69,4 +71,21 @@ public class FlightTest {
         flight.addPassenger(passenger1);
         assertEquals(1, flight.passengerCount());
     }
+
+    @Test
+    public void willAddPassengerIfThereIsSpaceOnFlight(){
+        flight.addPassenger(passenger1);
+        assertEquals(1, flight.passengerCount());
+    }
+
+    @Test
+    public void willNotAddPassengerIfFlightIsFull(){
+        testPlane = new Plane(PlaneType.TESTPLANE);
+        flight = new Flight("FR756", "EDI", "GLA", "1030", testPlane);
+        flight.addPassenger(passenger1);
+        flight.addPassenger(passenger2);
+        assertEquals(1, flight.passengerCount());
+    }
+
+
 }
