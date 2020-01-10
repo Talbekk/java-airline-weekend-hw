@@ -16,4 +16,14 @@ public class PlaneTest {
     public void checkPlaneHasAType(){
         assertEquals(PlaneType.BOEING747, plane.getTypeOfPlane());
     }
+
+    @Test
+    public void canGetPlaneCapacity(){
+        assertEquals(200, plane.getCapacityOfPlane());
+    }
+
+    @Test
+    public void canGetPlaneWeight(){
+        assertEquals(6000, plane.getWeightOfPlane());
+    }
 }

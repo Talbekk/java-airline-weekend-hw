@@ -9,4 +9,12 @@ public class Plane {
     public PlaneType getTypeOfPlane() {
         return this.typeOfPlane;
     }
+
+    public int getCapacityOfPlane() {
+        return this.typeOfPlane.getCapacity();
+    }
+
+    public int getWeightOfPlane() {
+        return this.typeOfPlane.getWeight();
+    }
 }
