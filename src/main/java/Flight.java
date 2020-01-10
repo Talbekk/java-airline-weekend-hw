@@ -45,12 +45,6 @@ public class Flight {
     }
 
     public boolean flightHasSeatsAvailable() {
-
-//        if(this.passengerCount() < this.plane.getCapacityOfPlane()) {
-//            return true;
-//        } else  {
-//            return false;
-//        }
         return this.passengerCount() < this.plane.getCapacityOfPlane();
     }
 
