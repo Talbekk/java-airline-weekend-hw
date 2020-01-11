@@ -1,6 +1,8 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
 public class FlightManagerTest {
@@ -10,6 +12,7 @@ public class FlightManagerTest {
     private Plane plane;
     private Passenger passenger1;
     private Passenger passenger2;
+    private ArrayList<Passenger> passengers;
 
     @Before
     public void before(){
@@ -18,6 +21,9 @@ public class FlightManagerTest {
         flightManager = new FlightManager(flight);
         passenger1 = new Passenger("Tyrion Lannister", 2);
         passenger2 = new Passenger("Cersei Lannister",1);
+        passengers = new ArrayList<Passenger>();
+        passengers.add(passenger1);
+        passengers.add(passenger2);
     }
 
     @Test
@@ -43,21 +49,19 @@ public class FlightManagerTest {
 
     @Test
     public void checkTheFlightManagerCanGetAListOfAllPassengerAmounts(){
-        flight.addPassenger(passenger1);
-        flight.addPassenger(passenger2);
+        flight.addGroupOfPassengers(passengers);
         assertEquals(2, flightManager.getListOfPassengerBaggageWeights().size());
     }
 
     @Test
     public void checkTheFlightManagerCanGetATotalPassengerBaggageWeight(){
-        flight.addPassenger(passenger1);
-        flight.addPassenger(passenger2);
+        flight.addGroupOfPassengers(passengers);
         assertEquals(30, flightManager.getTotalBaggageWeight());
     }
 
+    @Test
     public void checkTheFlightManagerCanGetARemainingWeightTotalForAFlight(){
-        flight.addPassenger(passenger1);
-        flight.addPassenger(passenger2);
+      flight.addGroupOfPassengers(passengers);
         assertEquals(2970, flightManager.getRemainingBaggageCapacity());
     }
 }

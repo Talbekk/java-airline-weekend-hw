@@ -1,6 +1,8 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
 public class FlightTest {
@@ -10,6 +12,7 @@ public class FlightTest {
     private Plane testPlane;
     private Passenger passenger1;
     private Passenger passenger2;
+    private ArrayList<Passenger> passengers;
 
     @Before
     public void before(){
@@ -17,6 +20,9 @@ public class FlightTest {
         flight = new Flight("FR756", "EDI", "GLA", "1030", plane);
         passenger1 = new Passenger("Jon Snow", 1);
         passenger2 = new Passenger("Ned Stark", 1);
+        passengers = new ArrayList<Passenger>();
+        passengers.add(passenger1);
+        passengers.add(passenger2);
     }
 
     @Test
@@ -82,8 +88,7 @@ public class FlightTest {
     public void willNotAddPassengerIfFlightIsFull(){
         testPlane = new Plane(PlaneType.TESTPLANE);
         flight = new Flight("FR756", "EDI", "GLA", "1030", testPlane);
-        flight.addPassenger(passenger1);
-        flight.addPassenger(passenger2);
+        flight.addGroupOfPassengers(passengers);
         assertEquals(1, flight.passengerCount());
     }
 
@@ -97,6 +102,12 @@ public class FlightTest {
     public void canGetAListOfPassengers(){
         flight.addPassenger(passenger1);
         assertEquals(1, flight.getPassengers().size());
+    }
+
+    @Test
+    public void canAddAGroupOfPassengers(){
+        flight.addGroupOfPassengers(passengers);
+        assertEquals(2, flight.passengerCount());
     }
 
 }

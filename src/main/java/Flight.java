@@ -72,4 +72,10 @@ public class Flight {
         ArrayList<Passenger> listOfPassengers = new ArrayList<Passenger>(this.passengers);
         return listOfPassengers;
     }
+
+    public void addGroupOfPassengers(ArrayList<Passenger> passengers) {
+        for (Passenger currentPassenger : passengers){
+            this.passengers.add(currentPassenger);
+        }
+    }
 }
