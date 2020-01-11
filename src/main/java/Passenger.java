@@ -17,4 +17,5 @@ public class Passenger {
     }
 
 
+    public int getTotalBagWeight() { return this.getBagCount() * 10; }
 }

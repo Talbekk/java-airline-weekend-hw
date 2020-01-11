@@ -47,4 +47,11 @@ public class FlightManagerTest {
         flight.addPassenger(passenger2);
         assertEquals(2, flightManager.getListOfPassengerBaggageWeights().size());
     }
+
+    @Test
+    public void checkTheFlightManagerCanGetATotalPassengerBaggageWeight(){
+        flight.addPassenger(passenger1);
+        flight.addPassenger(passenger2);
+        assertEquals(30, flightManager.getTotalBaggageWeight());
+    }
 }

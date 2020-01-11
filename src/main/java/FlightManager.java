@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Set;
 
 public class FlightManager {
 
@@ -27,7 +29,7 @@ public class FlightManager {
     public int getPassengerTotalBaggageWeight() {
         ArrayList<Passenger> passengerList = this.flight.getPassengers();
         Passenger selectedPassenger = passengerList.get(0);
-        return selectedPassenger.getBagCount() * 10;
+        return selectedPassenger.getTotalBagWeight();
     }
 
     public HashMap<String, Integer> getListOfPassengerBaggageWeights() {
@@ -35,12 +37,20 @@ public class FlightManager {
         ArrayList<Passenger> passengerList = this.flight.getPassengers();
 
         for (Passenger currentPassenger : passengerList){
-            baggageWeightList.put(currentPassenger.getName(), currentPassenger.getBagCount()*2);
+            baggageWeightList.put(currentPassenger.getName(), currentPassenger.getTotalBagWeight());
         }
         return baggageWeightList;
     }
 
-//    public int getPassengerTotalBaggageWeight() {
-//        return this.flight.;
-//    }
+    public int getTotalBaggageWeight() {
+        HashMap<String, Integer> baggageWeightList = this.getListOfPassengerBaggageWeights();
+        Collection<Integer> valuesSet = baggageWeightList.values();
+        ArrayList<Integer> listOfWeights = new ArrayList<Integer>(valuesSet);
+        int total = 0;
+        for (int bagWeight : listOfWeights){
+            total += bagWeight;
+        }
+        return total;
+    }
+
 }
