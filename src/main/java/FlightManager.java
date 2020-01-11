@@ -53,4 +53,8 @@ public class FlightManager {
         return total;
     }
 
+    public int getRemainingBaggageCapacity() {
+        int result = this.getTotalBaggageAllowance() - getTotalBaggageWeight();
+        return result;
+    }
 }
