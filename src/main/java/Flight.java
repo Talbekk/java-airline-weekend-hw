@@ -1,6 +1,5 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.BitSet;
+import java.util.Date;
 
 public class Flight {
 
@@ -8,10 +7,10 @@ public class Flight {
     private String flightNumber;
     private String destination;
     private String departureAirport;
-    private String departureTime;
+    private Date departureTime;
     private Plane plane;
 
-    public Flight(String flightNumber, String destination, String departureAirport, String departureTime, Plane plane) {
+    public Flight(String flightNumber, String destination, String departureAirport, Date departureTime, Plane plane) {
         this.passengers = new ArrayList<Passenger>();
         this.flightNumber = flightNumber;
         this.destination = destination;
@@ -37,7 +36,7 @@ public class Flight {
         return this.departureAirport;
     }
 
-    public String getDepartureTime() {
+    public Date getDepartureTime() {
         return this.departureTime;
     }
 
@@ -74,8 +73,10 @@ public class Flight {
     }
 
     public void addGroupOfPassengers(ArrayList<Passenger> passengers) {
-        for (Passenger currentPassenger : passengers){
-            this.passengers.add(currentPassenger);
+        for (Passenger currentPassenger : passengers) {
+            if (this.flightHasSeatsAvailable()) {
+                this.passengers.add(currentPassenger);
+            }
         }
     }
 }

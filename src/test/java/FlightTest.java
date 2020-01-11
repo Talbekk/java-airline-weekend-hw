@@ -2,6 +2,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import static org.junit.Assert.*;
 
@@ -13,11 +14,13 @@ public class FlightTest {
     private Passenger passenger1;
     private Passenger passenger2;
     private ArrayList<Passenger> passengers;
+    private Date date;
 
     @Before
     public void before(){
         plane = new Plane(PlaneType.BOEING747);
-        flight = new Flight("FR756", "EDI", "GLA", "1030", plane);
+        date = new Date();
+        flight = new Flight("FR756", "EDI", "GLA", date, plane);
         passenger1 = new Passenger("Jon Snow", 1);
         passenger2 = new Passenger("Ned Stark", 1);
         passengers = new ArrayList<Passenger>();
@@ -47,7 +50,7 @@ public class FlightTest {
 
     @Test
     public void checkTheFlightHasADepartureTime(){
-        assertEquals("1030", flight.getDepartureTime());
+        assertEquals(date, flight.getDepartureTime());
     }
 
     @Test
@@ -67,7 +70,7 @@ public class FlightTest {
     @Test
     public void checkTheFlightIsFull(){
         testPlane = new Plane(PlaneType.TESTPLANE);
-        flight = new Flight("FR756", "EDI", "GLA", "1030", testPlane);
+        flight = new Flight("FR756", "EDI", "GLA", date, testPlane);
         flight.addPassenger(passenger1);
         assertFalse(flight.flightHasSeatsAvailable());
     }
@@ -87,7 +90,7 @@ public class FlightTest {
     @Test
     public void willNotAddPassengerIfFlightIsFull(){
         testPlane = new Plane(PlaneType.TESTPLANE);
-        flight = new Flight("FR756", "EDI", "GLA", "1030", testPlane);
+        flight = new Flight("FR756", "EDI", "GLA", date, testPlane);
         flight.addGroupOfPassengers(passengers);
         assertEquals(1, flight.passengerCount());
     }

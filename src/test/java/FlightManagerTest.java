@@ -2,6 +2,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import static org.junit.Assert.*;
 
@@ -13,11 +14,12 @@ public class FlightManagerTest {
     private Passenger passenger1;
     private Passenger passenger2;
     private ArrayList<Passenger> passengers;
+    private Date date;
 
     @Before
     public void before(){
         plane = new Plane(PlaneType.BOEING747);
-        flight = new Flight("FR756", "EDI", "GLA", "1030", plane);
+        flight = new Flight("FR756", "EDI", "GLA", date, plane);
         flightManager = new FlightManager(flight);
         passenger1 = new Passenger("Tyrion Lannister", 2);
         passenger2 = new Passenger("Cersei Lannister",1);
