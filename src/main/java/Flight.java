@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Random;
 
 public class Flight {
 
@@ -59,6 +60,9 @@ public class Flight {
     public void addPassenger(Passenger passenger) {
         if (this.flightHasSeatsAvailable()) {
             this.passengers.add(passenger);
+            int seatNumber = this.getAvailableSeat();
+            passenger.addSeatNumber(seatNumber);
+            this.bookSeat(seatNumber);
         }
     }
 
@@ -83,4 +87,39 @@ public class Flight {
             }
         }
     }
+
+    public ArrayList<Integer> getAllSeats() {
+         ArrayList<Integer> seatList = new ArrayList<Integer>();
+         for( Integer currentSeat = 1; currentSeat <= this.plane.getCapacityOfPlane();currentSeat++ ) {
+             seatList.add(currentSeat);
+         }
+         return seatList;
+    }
+
+    public ArrayList<Integer> getRemainingSeats(){
+        ArrayList<Integer> seatList = new ArrayList<Integer>(this.getAllSeats());
+        for(Passenger currentPassenger: this.passengers){
+            seatList.remove(currentPassenger.getSeatNumber());
+        }
+        return seatList;
+    }
+
+    public Integer getAvailableSeat() {
+        ArrayList<Integer> listOfSeats = new ArrayList<Integer>(this.getAllSeats());
+        Random random = new Random();
+        return listOfSeats.get(random.nextInt(listOfSeats.size()));
+    }
+
+    public void bookSeat(Integer chosenSeat){
+        ArrayList<Integer> seatList = this.getAllSeats();
+        seatList.remove(chosenSeat);
+    }
+
+    public boolean checkIfFunctionReturnsAValidSeat() {
+        if( this.getAvailableSeat() <= this.getFlightPlane().getCapacity()){
+        return true;
+        }
+        return false;
+    }
+
 }
