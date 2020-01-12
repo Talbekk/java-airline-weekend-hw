@@ -62,9 +62,20 @@ public class Flight {
             this.passengers.add(passenger);
             int seatNumber = this.getAvailableSeat();
             passenger.addSeatNumber(seatNumber);
-            this.bookSeat(seatNumber);
+//            this.bookSeat(seatNumber);
         }
     }
+
+    public void testToAddPassengerOnSameSeat(Passenger passenger, int seat) {
+        if (this.flightHasSeatsAvailable()) {
+            if (this.getRemainingSeats().contains(seat)) {
+                this.passengers.add(passenger);
+                passenger.addSeatNumber(seat);
+            }
+//            this.bookSeat(seat);
+        }
+    }
+
 
     public Passenger getPassenger(Passenger passenger1) {
         for (Passenger currentPassenger : this.passengers) {
@@ -82,9 +93,7 @@ public class Flight {
 
     public void addGroupOfPassengers(ArrayList<Passenger> passengers) {
         for (Passenger currentPassenger : passengers) {
-            if (this.flightHasSeatsAvailable()) {
-                this.passengers.add(currentPassenger);
-            }
+                this.addPassenger(currentPassenger);
         }
     }
 
@@ -99,21 +108,22 @@ public class Flight {
     public ArrayList<Integer> getRemainingSeats(){
         ArrayList<Integer> seatList = new ArrayList<Integer>(this.getAllSeats());
         for(Passenger currentPassenger: this.passengers){
-            seatList.remove(currentPassenger.getSeatNumber());
+            seatList.remove((Integer)currentPassenger.getSeatNumber());
         }
         return seatList;
     }
 
-    public Integer getAvailableSeat() {
-        ArrayList<Integer> listOfSeats = new ArrayList<Integer>(this.getAllSeats());
+    public int getAvailableSeat() {
+        ArrayList<Integer> listOfSeats = new ArrayList<Integer>(this.getRemainingSeats());
         Random random = new Random();
-        return listOfSeats.get(random.nextInt(listOfSeats.size()));
+        Integer result = listOfSeats.get(random.nextInt(listOfSeats.size()));
+        return result;
     }
 
-    public void bookSeat(Integer chosenSeat){
-        ArrayList<Integer> seatList = this.getAllSeats();
-        seatList.remove(chosenSeat);
-    }
+//    public void bookSeat(Integer chosenSeat){
+//        ArrayList<Integer> seatList = this.getRemainingSeats();
+//        seatList.remove(chosenSeat);
+//    }
 
     public boolean checkIfFunctionReturnsAValidSeat() {
         if( this.getAvailableSeat() <= this.getFlightPlane().getCapacity()){

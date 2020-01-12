@@ -15,7 +15,6 @@ public class FlightTest {
     private Passenger passenger2;
     private ArrayList<Passenger> passengers;
     private Date date;
-    private Object Integer;
 
     @Before
     public void before(){
@@ -129,6 +128,18 @@ public class FlightTest {
         int startingCapacity = flight.getAllSeats().size();
         flight.addPassenger(passenger1);
         assertTrue( startingCapacity != flight.getRemainingSeats().size());
+    }
+
+    @Test public void canBookMultiplePassengers(){
+        flight.addGroupOfPassengers(passengers);
+        assertEquals(2, flight.passengerCount());
+    }
+
+    @Test
+    public void cantBookPassengersOnTheSameSeat(){
+        flight.testToAddPassengerOnSameSeat(passenger1, 1);
+        flight.testToAddPassengerOnSameSeat(passenger1, 1);
+        assertEquals(1, flight.passengerCount());
     }
 
 }
