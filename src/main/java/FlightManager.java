@@ -56,4 +56,19 @@ public class FlightManager {
         int result = this.getTotalBaggageAllowance() - getTotalBaggageWeight();
         return result;
     }
+
+//    public ArrayList<Passenger> getPassengersOrderedBySeatNumber() {
+//        ArrayList<Passenger> sortedList = new ArrayList<Passenger>(this.flight.getPassengers());
+//        Passenger temp;
+//        for (int i = 0; i<sortedList.size()-1;i++){
+//            for (int j =0; j<sortedList.size()-1-i; j++){
+//                if(sortedList.get(j).getSeatNumber() > sortedList.get(j+1).getSeatNumber()){
+//                    temp = sortedList.get(j);
+//                    sortedList.get(j) = sortedList.get(j+1);
+//                    sortedList.get(j+1) = temp;
+//                }
+//            }
+//        }
+//        return sortedList;
+//    }
 }

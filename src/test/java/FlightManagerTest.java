@@ -15,6 +15,8 @@ public class FlightManagerTest {
     private Passenger passenger2;
     private ArrayList<Passenger> passengers;
     private Date date;
+    private Passenger passenger3;
+    private Passenger passenger4;
 
     @Before
     public void before(){
@@ -66,4 +68,16 @@ public class FlightManagerTest {
       flight.addGroupOfPassengers(passengers);
         assertEquals(2970, flightManager.getRemainingBaggageCapacity());
     }
+
+//    @Test
+//    public void checkTheFlightManagerCanGetAnOrderedListOfPassengersBySeat(){
+//        passenger3 = new Passenger("Jamie Lannister", 2, flight);
+//        passenger4 = new Passenger("Tywin Lannister", 1, flight);
+//        passengers.add(passenger3);
+//        passengers.add(passenger4);
+//        flight.addGroupOfPassengers(passengers);
+//        assertEquals(4, flight.passengerCount());
+//        assertEquals(passengers, flight.getPassengers());
+//        assertEquals(passengers, flightManager.getPassengersOrderedBySeatNumber());
+//    }
 }
