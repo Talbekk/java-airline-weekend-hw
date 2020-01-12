@@ -21,8 +21,8 @@ public class FlightTest {
         plane = new Plane(PlaneType.BOEING747);
         date = new Date();
         flight = new Flight("FR756", "EDI", "GLA", date, plane);
-        passenger1 = new Passenger("Jon Snow", 1);
-        passenger2 = new Passenger("Ned Stark", 1);
+        passenger1 = new Passenger("Jon Snow", 1, flight);
+        passenger2 = new Passenger("Ned Stark", 1, flight);
         passengers = new ArrayList<Passenger>();
         passengers.add(passenger1);
         passengers.add(passenger2);

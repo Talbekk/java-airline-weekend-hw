@@ -1,21 +1,26 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
 
 public class PassengerTest {
 
     private Passenger passenger;
-    private Passenger passenger1;
-    private Passenger passenger2;
-    private ArrayList<Passenger> passengers;
+    private Flight flight;
+    private Plane plane;
+    private Date date;
+    private Flight testFlight;
 
     @Before
     public void before(){
-        passenger = new Passenger("Barry Scott", 2);
+        plane = new Plane(PlaneType.BOEING747);
+        date = new Date();
+        testFlight = new Flight();
+        flight = new Flight("FR756", "EDI", "GLA", date, plane);
+        passenger = new Passenger("Barry Scott", 2, testFlight);
 
     }
 
@@ -32,6 +37,17 @@ public class PassengerTest {
     @Test
     public void checkThePassengersTotalBagWeight(){
         assertEquals(20, passenger.getTotalBagWeight());
+    }
+
+    @Test
+    public void passengerHasAFlight(){
+        assertEquals(testFlight, passenger.getFlight());
+    }
+
+    @Test
+    public void addPassengerToFLight(){
+        passenger.addFlight(flight);
+        assertEquals(flight, passenger.getFlight());
     }
 
 

@@ -10,6 +10,10 @@ public class Flight {
     private Date departureTime;
     private Plane plane;
 
+    public Flight(){
+
+    }
+
     public Flight(String flightNumber, String destination, String departureAirport, Date departureTime, Plane plane) {
         this.passengers = new ArrayList<Passenger>();
         this.flightNumber = flightNumber;

@@ -21,8 +21,8 @@ public class FlightManagerTest {
         plane = new Plane(PlaneType.BOEING747);
         flight = new Flight("FR756", "EDI", "GLA", date, plane);
         flightManager = new FlightManager(flight);
-        passenger1 = new Passenger("Tyrion Lannister", 2);
-        passenger2 = new Passenger("Cersei Lannister",1);
+        passenger1 = new Passenger("Tyrion Lannister", 2, flight);
+        passenger2 = new Passenger("Cersei Lannister",1, flight);
         passengers = new ArrayList<Passenger>();
         passengers.add(passenger1);
         passengers.add(passenger2);
