@@ -69,15 +69,31 @@ public class FlightManagerTest {
         assertEquals(2970, flightManager.getRemainingBaggageCapacity());
     }
 
-//    @Test
-//    public void checkTheFlightManagerCanGetAnOrderedListOfPassengersBySeat(){
-//        passenger3 = new Passenger("Jamie Lannister", 2, flight);
-//        passenger4 = new Passenger("Tywin Lannister", 1, flight);
-//        passengers.add(passenger3);
-//        passengers.add(passenger4);
-//        flight.addGroupOfPassengers(passengers);
-//        assertEquals(4, flight.passengerCount());
-//        assertEquals(passengers, flight.getPassengers());
-//        assertEquals(passengers, flightManager.getPassengersOrderedBySeatNumber());
-//    }
+    @Test
+    public void canGetAListOfSeatNumbers(){
+        flight.addGroupOfPassengers(passengers);
+        assertEquals(2, flightManager.getSeatNumbers().length);
+    }
+
+    @Test
+    public void canGetASortedListOfSeats(){
+        passenger3 = new Passenger("Jamie Lannister", 2, flight);
+        passenger4 = new Passenger("Tywin Lannister", 1, flight);
+        passengers.add(passenger3);
+        passengers.add(passenger4);
+        flight.addGroupOfPassengers(passengers);
+        assertEquals(4, flightManager.getSortedListOfSeats().length);
+    }
+
+    @Test
+    public void checkTheFlightManagerCanGetAnOrderedListOfPassengersBySeat(){
+        passenger3 = new Passenger("Jamie Lannister", 2, flight);
+        passenger4 = new Passenger("Tywin Lannister", 1, flight);
+        passengers.add(passenger3);
+        passengers.add(passenger4);
+        flight.addGroupOfPassengers(passengers);
+        assertEquals(4, flight.passengerCount());
+        assertEquals(passengers, flight.getPassengers());
+        assertTrue(passengers != flightManager.getPassengersOrderedBySeatNumber());
+    }
 }

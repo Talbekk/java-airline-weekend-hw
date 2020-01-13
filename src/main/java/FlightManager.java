@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -57,18 +58,43 @@ public class FlightManager {
         return result;
     }
 
-//    public ArrayList<Passenger> getPassengersOrderedBySeatNumber() {
-//        ArrayList<Passenger> sortedList = new ArrayList<Passenger>(this.flight.getPassengers());
-//        Passenger temp;
-//        for (int i = 0; i<sortedList.size()-1;i++){
-//            for (int j =0; j<sortedList.size()-1-i; j++){
-//                if(sortedList.get(j).getSeatNumber() > sortedList.get(j+1).getSeatNumber()){
-//                    temp = sortedList.get(j);
-//                    sortedList.get(j) = sortedList.get(j+1);
-//                    sortedList.get(j+1) = temp;
-//                }
-//            }
-//        }
-//        return sortedList;
-//    }
+    public int[] getSortedListOfSeats() {
+        ArrayList<Passenger> sortedList = new ArrayList<Passenger>();
+        int temp = 0;
+        int arrayLength = this.getSeatNumbers().length;
+        int[] seatsList = this.getSeatNumbers();
+        for (int i = 0; i<arrayLength-1;i++){
+            for (int j =0; j<arrayLength-1-i; j++){
+                if(seatsList[j] > seatsList[j+1]){
+                    temp = seatsList[j];
+                    seatsList[j] = seatsList[j+1];
+                    seatsList[j+1] = temp;
+                }
+            }
+        }
+        return seatsList;
+    }
+    
+    public int[] getSeatNumbers() {
+        int[] seatNumbers = new int[this.flight.passengerCount()];
+        for(int i = 0; i < seatNumbers.length; i++){
+            seatNumbers[i] = this.flight.getPassengers().get(i).getSeatNumber();
+        }
+        return seatNumbers;
+    }
+
+    public ArrayList<Passenger> getPassengersOrderedBySeatNumber() {
+        int[] seats = this.getSortedListOfSeats();
+        ArrayList<Passenger> passengerList = this.flight.getPassengers();
+        ArrayList<Passenger> sortedList = new ArrayList<Passenger>();
+
+        for ( int currentSeat : seats){
+            for (Passenger passenger: passengerList) {
+                if (currentSeat == passenger.getSeatNumber()) {
+                    sortedList.add(passenger);
+                }
+            }
+        }
+        return sortedList;
+    }
 }
